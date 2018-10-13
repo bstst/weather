@@ -1,4 +1,5 @@
 const path = require('path');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -13,6 +14,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+  plugins: [
+    new StyleLintPlugin(),
+  ],
   module: {
     rules: [
       {
