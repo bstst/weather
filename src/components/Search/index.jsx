@@ -30,7 +30,7 @@ class Search extends React.Component {
     return (
       <div>
         <input type="text" onChange={this.handleSearchChange} />
-        {loading && <Spinner />}
+        {loading && <Spinner absolute={true} />}
         {!loading && <SearchList items={items} />}
       </div>
     );

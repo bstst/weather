@@ -1,20 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SearchListItem extends React.Component {
-  handleClick = () => {
-    console.log(this.props);
-  }
-
   render () {
-    const { id, name } = this.props;
+    const {
+      id, name, lat, lon,
+    } = this.props;
     return (
-      <div
-        onClick={this.handleClick}
+      <Link
+        to={`/${lat * 100},${lon * 100}`}
       >
         {id}
         {', '}
         {name}
-      </div>
+      </Link>
     );
   }
 }

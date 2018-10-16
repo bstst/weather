@@ -3,8 +3,8 @@ import './index.scss';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
-import Routes from '../Routes';
-import TopMenu from '../components/TopMenu';
+import Routes from '../../Routes';
+import TopMenu from '../../components/TopMenu';
 
 class App extends React.Component {
   render () {
