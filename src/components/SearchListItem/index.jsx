@@ -7,10 +7,11 @@ class SearchListItem extends React.Component {
     const {
       name,
       countryCode,
+      asciiName,
     } = this.props;
     return (
       <Link
-        to={`/weather/${countryCode}/${name}`}
+        to={`/weather/${countryCode}/${asciiName}`}
         className={styles.item}
       >
         {name}

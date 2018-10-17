@@ -8,3 +8,5 @@ export const getCountries = () => fetch('https://restcountries.eu/rest/v2/all?fi
 export const getCountryCities = (countryCode) => fetch(`${BASE}/searchJSON?formatted=true&q=&maxRows=5&lang=en&username=${KEY}&style=FULL&country=${countryCode}&orderby=population&featureClass=P`, { method: 'GET' }).then(response => response.json());
 
 export const getLocationByCoordinates = (lat, lon) => fetch(`${BASE}/findNearbyPlaceNameJSON?formatted=false&lat=${lat}&lng=${lon}&username=${KEY}&style=SHORT`);
+
+export const autocompleteCities = (value) => fetch(`${BASE}/searchJSON?formatted=true&q=${value}&maxRows=10&lang=en&username=${KEY}&style=FULL&featureCode=PPLC&featureCode=PPLA&featureCode=PPLS`);

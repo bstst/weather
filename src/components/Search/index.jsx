@@ -1,6 +1,6 @@
 import React from 'react';
 import debounce from '../../utils/debounce';
-import { search } from '../../actions/weather';
+import { autocompleteCities } from '../../actions/countries';
 import Spinner from '../Spinner';
 import SearchList from '../SearchList';
 
@@ -11,9 +11,9 @@ class Search extends React.Component {
   }
 
   doSearch = debounce((val) => {
-    search(val)
+    autocompleteCities(val)
       .then(response => response.json())
-      .then(data => this.setState({ items: data }))
+      .then(data => this.setState({ items: data.geonames }))
       .then(() => this.setState({ loading: false }));
   }, 1000)
 

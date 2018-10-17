@@ -17,7 +17,7 @@ class Location extends React.Component {
     getCurrentWeatherQuery(`${city}, ${country}`)
       .then(res => res.json())
       .then(data => {
-        saveRecentLocation({ ...data.location, countryCode: country });
+        saveRecentLocation({ ...data.location, countryCode: country, asciiName: city });
         this.setState({
           loading: false,
           current: data.current,
