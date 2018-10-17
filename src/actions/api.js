@@ -1,4 +1,5 @@
 import fetch from '../utils/fetch';
+import { getItem, setItem } from '../utils/storage';
 
 const BASE = 'http://api.apixu.com/v1';
 const KEY = 'cacdf29dc2be47d484a105606152306';
@@ -24,3 +25,17 @@ export const getCurrentLocation = () => new Promise((resolve, reject) => {
       });
   }
 });
+
+export const getRecentLocations = () => getItem('recent') || [];
+
+export const saveRecentLocation = (newLocation) => {
+  const now = Math.floor(Date.now() / 1000);
+  const recentLocations = getRecentLocations();
+  const foundInRecent = recentLocations.find(location => location.name === newLocation.name);
+  if (foundInRecent) {
+    foundInRecent.timestamp = now;
+  } else {
+    recentLocations.push({ ...newLocation, timestamp: now });
+  }
+  setItem('recent', recentLocations.sort((a, b) => b.timestamp - a.timestamp).slice(0, 10));
+};

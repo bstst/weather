@@ -1,13 +1,11 @@
 const storage = window.localStorage;
 
-const {
-  get,
-  set,
-  clear,
-} = storage;
+const getItem = (name) => JSON.parse(storage.getItem(name));
+const setItem = (name, value) => storage.setItem(name, JSON.stringify(value));
+const clear = () => storage.clear();
 
-export default {
-  get,
-  set,
+export {
+  getItem,
+  setItem,
   clear,
 };

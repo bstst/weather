@@ -30,6 +30,7 @@ class TopMenu extends React.Component {
         <nav>
           <Link to="/">Home</Link>
           <span onClick={this.handleMyLocationClick}>My Location</span>
+          <Link to="/recent">Recent locations</Link>
         </nav>
         {loading && <Spinner absolute={true} />}
       </div>

@@ -15,6 +15,7 @@ module.exports = {
   },
   rules: {
     semi: 2,
+    "arrow-parens": 0,
     "space-before-function-paren": 0,
     "import/prefer-default-export": 0,
     "react/prefer-stateless-function": 0,

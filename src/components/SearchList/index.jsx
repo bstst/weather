@@ -5,7 +5,7 @@ class SearchList extends React.Component {
   render () {
     const { items } = this.props;
     return (
-      <div>{items.map(item => <SearchListItem key={item.id} {...item} />)}</div>
+      <div>{items.map(item => <SearchListItem key={item.name} {...item} />)}</div>
     );
   }
 }

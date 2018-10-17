@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCurrentWeatherForLatLon } from '../../actions/api';
+import { getCurrentWeatherForLatLon, saveRecentLocation } from '../../actions/api';
 import Spinner from '../../components/Spinner';
 
 class Location extends React.Component {
@@ -17,6 +17,7 @@ class Location extends React.Component {
     getCurrentWeatherForLatLon(lat, lon)
       .then(response => response.json())
       .then((data) => {
+        saveRecentLocation(data.location);
         this.setState({
           loading: false,
           current: data.current,

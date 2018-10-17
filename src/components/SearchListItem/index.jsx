@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './index.scss';
 
 class SearchListItem extends React.Component {
   render () {
     const {
-      id, name, lat, lon,
+      name, lat, lon,
     } = this.props;
     return (
       <Link
-        to={`/${lat * 100},${lon * 100}`}
+        to={`/${parseInt(lat * 100, 10)},${parseInt(lon * 100, 10)}`}
+        className={styles.item}
       >
-        {id}
-        {', '}
         {name}
       </Link>
     );

@@ -16,11 +16,17 @@ const Location = Loadable({
   loading: Spinner,
 });
 
+const Recent = Loadable({
+  loader: () => import('../views/Recent'),
+  loading: Spinner,
+});
+
 class Routes extends React.Component {
   render () {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/recent" component={Recent} />
         <Route path="/:id" component={Location} />
       </Switch>
     );
