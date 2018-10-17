@@ -1,5 +1,8 @@
 import React from 'react';
-import { getCurrentWeatherForLatLon, saveRecentLocation } from '../../actions/api';
+import {
+  saveRecentLocation,
+  getCurrentWeatherQuery,
+} from '../../actions/weather';
 import Spinner from '../../components/Spinner';
 
 class Location extends React.Component {
@@ -10,14 +13,11 @@ class Location extends React.Component {
   }
 
   componentDidMount () {
-    const { match: { params: { id } } } = this.props;
-    const split = id.split(',');
-    const lat = split[0] / 100;
-    const lon = split[1] / 100;
-    getCurrentWeatherForLatLon(lat, lon)
-      .then(response => response.json())
-      .then((data) => {
-        saveRecentLocation(data.location);
+    const { match: { params: { country, city } } } = this.props;
+    getCurrentWeatherQuery(`${city}, ${country}`)
+      .then(res => res.json())
+      .then(data => {
+        saveRecentLocation({ ...data.location, countryCode: country });
         this.setState({
           loading: false,
           current: data.current,

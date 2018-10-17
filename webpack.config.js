@@ -6,10 +6,11 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist',
+    contentBase: path.join(__dirname, 'dist'),
     historyApiFallback: true,
   },
   resolve: {

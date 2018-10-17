@@ -3,7 +3,8 @@ import {
   Link,
 } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { getCurrentLocation } from '../../actions/api';
+import { getCurrentLocation } from '../../actions/weather';
+import { getLocationByCoordinates } from '../../actions/countries';
 import Spinner from '../Spinner';
 // import styles from './index.scss';
 
@@ -17,8 +18,15 @@ class TopMenu extends React.Component {
     getCurrentLocation()
       .then((coords) => {
         const { lat, lon } = coords;
-        const { history } = this.props;
-        history.push(`${parseInt(lat * 100, 10)},${parseInt(lon * 100, 10)}`);
+        getLocationByCoordinates(lat, lon)
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.geonames && data.geonames.length) {
+              const { history } = this.props;
+              const location = data.geonames[0];
+              history.push(`/weather/${location.countryCode}/${location.name}`);
+            }
+          });
       })
       .finally(() => this.setState({ loading: false }));
   }
@@ -31,6 +39,7 @@ class TopMenu extends React.Component {
           <Link to="/">Home</Link>
           <span onClick={this.handleMyLocationClick}>My Location</span>
           <Link to="/recent">Recent locations</Link>
+          <Link to="/countries">Countries</Link>
         </nav>
         {loading && <Spinner absolute={true} />}
       </div>

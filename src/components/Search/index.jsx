@@ -1,6 +1,6 @@
 import React from 'react';
 import debounce from '../../utils/debounce';
-import { search } from '../../actions/api';
+import { search } from '../../actions/weather';
 import Spinner from '../Spinner';
 import SearchList from '../SearchList';
 

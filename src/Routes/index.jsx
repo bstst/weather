@@ -21,13 +21,25 @@ const Recent = Loadable({
   loading: Spinner,
 });
 
+const Countries = Loadable({
+  loader: () => import('../views/Countries'),
+  loading: Spinner,
+});
+
+const Country = Loadable({
+  loader: () => import('../views/Country'),
+  loading: Spinner,
+});
+
 class Routes extends React.Component {
   render () {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/countries" component={Countries} />
+        <Route path="/country/:country" component={Country} />
         <Route path="/recent" component={Recent} />
-        <Route path="/:id" component={Location} />
+        <Route path="/weather/:country/:city" component={Location} />
       </Switch>
     );
   }

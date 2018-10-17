@@ -5,11 +5,12 @@ import styles from './index.scss';
 class SearchListItem extends React.Component {
   render () {
     const {
-      name, lat, lon,
+      name,
+      countryCode,
     } = this.props;
     return (
       <Link
-        to={`/${parseInt(lat * 100, 10)},${parseInt(lon * 100, 10)}`}
+        to={`/weather/${countryCode}/${name}`}
         className={styles.item}
       >
         {name}

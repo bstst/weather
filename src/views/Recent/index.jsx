@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchList from '../../components/SearchList';
-import { getRecentLocations } from '../../actions/api';
+import { getRecentLocations } from '../../actions/weather';
 
 class Recent extends React.Component {
   state = {
