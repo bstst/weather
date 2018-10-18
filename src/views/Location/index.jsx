@@ -5,6 +5,7 @@ import {
 } from '../../actions/weather';
 import { getItem, setItem } from '../../utils/storage';
 import Spinner from '../../components/Spinner';
+import styles from './index.scss';
 
 const systemMap = {
   feelslike: ['c', 'f'],
@@ -18,7 +19,8 @@ const systemMap = {
 const METRIC = 0;
 const IMPERIAL = 1;
 
-const getSystemValue = (name, system) => name in systemMap ? `${name}_${systemMap[name][system]}` : name;
+const getLabel = (name, system) => name in systemMap ? systemMap[name][system] : '';
+const getFieldName = (name, system) => name in systemMap ? `${name}_${getLabel(name, system)}` : name;
 
 class Location extends React.Component {
   constructor () {
@@ -55,9 +57,11 @@ class Location extends React.Component {
   renderField (title, field, literal = false) {
     const { system, current } = this.state;
     return (
-      <div>
-        <div>{title}</div>
-        <div>{literal ? field : current[getSystemValue(field, system)]}</div>
+      <div className={styles.row}>
+        <div className={styles.label}>{title}</div>
+        <div className={styles.value}>
+          {literal ? field : `${current[getFieldName(field, system)]} ${getLabel(field, system)}`}
+        </div>
       </div>
     );
   }
@@ -67,6 +71,7 @@ class Location extends React.Component {
     return (
       <div
         onClick={this.handleSystemSwitch}
+        className={styles.switch}
       >
         {
           system === METRIC
@@ -87,7 +92,7 @@ class Location extends React.Component {
       return <Spinner absolute={true} />;
     }
     return (
-      <div>
+      <div className={styles.content}>
         {this.renderSystemSwitch()}
         {this.renderField('last updated:', 'last_updated')}
         {this.renderField('temp:', 'temp')}
