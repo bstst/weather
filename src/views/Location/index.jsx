@@ -35,6 +35,18 @@ class Location extends React.Component {
   }
 
   componentDidMount () {
+    this.getData();
+  }
+
+  componentDidUpdate (props) {
+    const { match: { params: { country, city } } } = this.props;
+    const { match: { params: { country: prevCountry, city: prevCity } } } = props;
+    if (country !== prevCountry || city !== prevCity) {
+      this.getData();
+    }
+  }
+
+  getData = () => {
     const { match: { params: { country, city } } } = this.props;
     getCurrentWeatherQuery(`${city}, ${country}`)
       .then(res => res.json())
@@ -109,6 +121,7 @@ class Location extends React.Component {
           {this.renderField('Wind degree:', 'wind_degree')}
         </div>
         <Map
+          key={`${location.lat},${location.lon}`}
           lat={location.lat}
           lng={location.lon}
           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places&amp;key=AIzaSyC26h7-XJoZ6q4ENgT6htqpE4GwfOCwt7E"
