@@ -5,6 +5,7 @@ import {
 } from '../../actions/weather';
 import { getItem, setItem } from '../../utils/storage';
 import Spinner from '../../components/Spinner';
+import Map from '../../components/Map';
 import styles from './index.scss';
 
 const systemMap = {
@@ -75,8 +76,8 @@ class Location extends React.Component {
       >
         {
           system === METRIC
-            ? 'switch to imperial'
-            : 'switch to metric'
+            ? '> Imperial'
+            : '> Metric'
         }
       </div>
     );
@@ -94,20 +95,25 @@ class Location extends React.Component {
     return (
       <div className={styles.content}>
         {this.renderSystemSwitch()}
-        {this.renderField('last updated:', 'last_updated')}
-        {this.renderField('temp:', 'temp')}
-        {this.renderField('feels like:', 'feelslike')}
-        {this.renderField('humidity:', 'humidity')}
-        {this.renderField('is day:', current.is_day ? 'day' : 'night', true)}
-        {this.renderField('precip:', 'precip')}
-        {this.renderField('pressure:', 'pressure')}
-        {this.renderField('visibility:', 'vis')}
-        {this.renderField('wind speed:', 'wind')}
-        {this.renderField('wind degree:', 'wind_degree')}
-        <div>
-          {location.lat}
-          {location.lon}
-        </div>
+        <h1>{`${location.name}, ${location.country}`}</h1>
+        {this.renderField('Last updated:', 'last_updated')}
+        {this.renderField('Temperature:', 'temp')}
+        {this.renderField('Feels like:', 'feelslike')}
+        {this.renderField('Humidity:', 'humidity')}
+        {this.renderField('Is day:', current.is_day ? 'day' : 'night', true)}
+        {this.renderField('Precipitation:', 'precip')}
+        {this.renderField('Pressure:', 'pressure')}
+        {this.renderField('Visibility:', 'vis')}
+        {this.renderField('Wind speed:', 'wind')}
+        {this.renderField('Wind degree:', 'wind_degree')}
+        <Map
+          lat={location.lat}
+          lng={location.lon}
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=geometry,drawing,places&amp;key=AIzaSyC26h7-XJoZ6q4ENgT6htqpE4GwfOCwt7E"
+          loadingElement={<div style={{ height: '200px' }} />}
+          containerElement={<div style={{ height: '200px' }} />}
+          mapElement={<div style={{ height: '200px' }} />}
+        />
       </div>
     );
   }
