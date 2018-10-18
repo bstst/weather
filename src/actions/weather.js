@@ -2,7 +2,7 @@ import fetch from '../utils/fetch';
 import { getItem, setItem } from '../utils/storage';
 
 const BASE = 'http://api.apixu.com/v1';
-const KEY = 'cacdf29dc2be47d484a105606152306';
+const KEY = 'cacdf29dc2be47d484a105606152306'; // this should be extracted to an environmental value, of course
 
 export const search = val => fetch(`${BASE}/search.json?key=${KEY}&q=${val}`, { method: 'GET' });
 

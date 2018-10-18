@@ -1,7 +1,7 @@
 import fetch from '../utils/fetch';
 
 const BASE = 'http://api.geonames.org';
-const KEY = 'bstst';
+const KEY = 'bstst'; // this should be extracted to an environmental value, of course
 
 export const getCountries = () => fetch('https://restcountries.eu/rest/v2/all?fields=name;alpha2Code', { method: 'GET' }).then(response => response.json());
 
