@@ -1,10 +1,10 @@
 import React from 'react';
-import './index.scss';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 import Routes from '../../Routes';
 import TopMenu from '../../components/TopMenu';
+import styles from './index.scss';
 
 class App extends React.Component {
   render () {
@@ -12,7 +12,9 @@ class App extends React.Component {
       <Router>
         <div>
           <TopMenu />
-          <Routes />
+          <div className={styles.content}>
+            <Routes />
+          </div>
         </div>
       </Router>
     );

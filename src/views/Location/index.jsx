@@ -76,8 +76,8 @@ class Location extends React.Component {
       >
         {
           system === METRIC
-            ? '> Imperial'
-            : '> Metric'
+            ? 'Metric'
+            : 'Imperial'
         }
       </div>
     );
@@ -96,16 +96,18 @@ class Location extends React.Component {
       <div className={styles.content}>
         {this.renderSystemSwitch()}
         <h1>{`${location.name}, ${location.country}`}</h1>
-        {this.renderField('Last updated:', 'last_updated')}
-        {this.renderField('Temperature:', 'temp')}
-        {this.renderField('Feels like:', 'feelslike')}
-        {this.renderField('Humidity:', 'humidity')}
-        {this.renderField('Is day:', current.is_day ? 'day' : 'night', true)}
-        {this.renderField('Precipitation:', 'precip')}
-        {this.renderField('Pressure:', 'pressure')}
-        {this.renderField('Visibility:', 'vis')}
-        {this.renderField('Wind speed:', 'wind')}
-        {this.renderField('Wind degree:', 'wind_degree')}
+        <div className={styles.rows}>
+          {this.renderField('Last updated:', 'last_updated')}
+          {this.renderField('Temperature:', 'temp')}
+          {this.renderField('Feels like:', 'feelslike')}
+          {this.renderField('Humidity:', 'humidity')}
+          {this.renderField('Is day:', current.is_day ? 'day' : 'night', true)}
+          {this.renderField('Precipitation:', 'precip')}
+          {this.renderField('Pressure:', 'pressure')}
+          {this.renderField('Visibility:', 'vis')}
+          {this.renderField('Wind speed:', 'wind')}
+          {this.renderField('Wind degree:', 'wind_degree')}
+        </div>
         <Map
           lat={location.lat}
           lng={location.lon}

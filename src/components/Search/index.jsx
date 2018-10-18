@@ -3,6 +3,7 @@ import debounce from '../../utils/debounce';
 import { autocompleteCities } from '../../actions/countries';
 import Spinner from '../Spinner';
 import SearchList from '../SearchList';
+import styles from './index.scss';
 
 class Search extends React.Component {
   state = {
@@ -29,7 +30,12 @@ class Search extends React.Component {
     const { loading, items } = this.state;
     return (
       <div>
-        <input type="text" onChange={this.handleSearchChange} />
+        <input
+          className={styles.input}
+          type="text"
+          onChange={this.handleSearchChange}
+          placeholder="Enter city"
+        />
         {loading && <Spinner absolute={true} />}
         {!loading && <SearchList items={items} />}
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Link,
+  NavLink,
 } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { getCurrentLocation } from '../../actions/weather';
@@ -34,11 +34,11 @@ class TopMenu extends React.Component {
   render () {
     const { loading } = this.state;
     return (
-      <div>
+      <div className={styles.container}>
         <nav>
-          <Link className={styles.link} to="/">Home</Link>
-          <Link className={styles.link} to="/countries">Countries</Link>
-          <Link className={styles.link} to="/recent">Recent</Link>
+          <NavLink exact={true} className={styles.link} activeClassName={styles.active} to="/">Search</NavLink>
+          <NavLink className={styles.link} activeClassName={styles.active} to="/countries">Countries</NavLink>
+          <NavLink className={styles.link} activeClassName={styles.active} to="/recent">Recent</NavLink>
           <span className={styles.link} onClick={this.handleMyLocationClick}>My Location</span>
         </nav>
         {loading && <Spinner absolute={true} />}

@@ -1,6 +1,30 @@
+.container {
+  border-bottom: 1px solid #eee;
+}
+
+.container nav {
+  display: flex;
+  flex-direction: row;
+}
+
 .link {
+  flex: 1;
+  align-self: center;
   display: inline-block;
   text-decoration: none;
+  text-align: center;
   color: #444;
-  padding: 10px 15px;
+  padding: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-right: 1px solid #ddd;
+  background: #eee;
+}
+
+.active {
+  background: #fff;
+}
+
+.link:last-child {
+  border-right: 0;
 }
