@@ -1,14 +1,13 @@
 const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-module.exports = {
+const config = {
   entry: './src/index.jsx',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
-  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     historyApiFallback: true,
@@ -46,3 +45,10 @@ module.exports = {
     ],
   },
 };
+
+module.exports = (env, argv) => {
+  if (argv.mode === 'development') {
+    config.devtool = 'eval-source-map';
+  }
+  return config;
+}
