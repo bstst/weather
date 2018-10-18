@@ -15,7 +15,6 @@ class Recent extends React.Component {
     const { items } = this.state;
     return (
       <div>
-        Recent locations:
         <SearchList items={items} />
       </div>
     );

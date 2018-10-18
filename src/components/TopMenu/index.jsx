@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import { getCurrentLocation } from '../../actions/weather';
 import { getLocationByCoordinates } from '../../actions/countries';
 import Spinner from '../Spinner';
-// import styles from './index.scss';
+import styles from './index.scss';
 
 class TopMenu extends React.Component {
   state = {
@@ -36,10 +36,10 @@ class TopMenu extends React.Component {
     return (
       <div>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/countries">Countries</Link>
-          <Link to="/recent">Recent locations</Link>
-          <span onClick={this.handleMyLocationClick}>My Location</span>
+          <Link className={styles.link} to="/">Home</Link>
+          <Link className={styles.link} to="/countries">Countries</Link>
+          <Link className={styles.link} to="/recent">Recent</Link>
+          <span className={styles.link} onClick={this.handleMyLocationClick}>My Location</span>
         </nav>
         {loading && <Spinner absolute={true} />}
       </div>
